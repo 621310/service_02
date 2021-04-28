@@ -1,16 +1,52 @@
 package com.liuyl.service_02.controller;
 
 
+import com.liuyl.service_02.service.TestService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.HashMap;
+import java.util.Map;
+
+/**
+ * @author liuyl01
+ */
 @RestController
 @RequestMapping("/api/user")
 public class TestController {
 
-    @GetMapping("/getAllUser")
-    public void tset(){
-        System.out.println(123);
+    @Autowired
+    RedisTemplate<String,Object> redisTemplate;
+    @Autowired
+    private TestService testService;
+
+    @GetMapping("/test")
+    public  Map<String,Object> tset(){
+        Map<String,Object> result = new HashMap<>();
+        result.put("code",200);
+        result.put("msg","success");
+        String key = "zszxz";
+        String value = "知识追寻者";
+        redisTemplate.opsForValue().set(key, value);
+        return result;
+    }
+
+    //测试redis
+    @GetMapping(value = "/getRedis")
+    public Map<String,Object> testredis(){
+        String aa = (String)redisTemplate.opsForValue().get("zszxz");
+        Map<String,Object> result = new HashMap<>();
+        result.put("aa",aa);
+        return result;
+    }
+
+    @GetMapping("/test-mybatis")
+    public Map<String,Object>  testMybatis(){
+        Map<String,Object> result = new HashMap<>();
+        result = testService.testMybatis();
+        return result;
     }
 }

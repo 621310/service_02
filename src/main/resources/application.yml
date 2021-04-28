@@ -2,27 +2,26 @@ server:
   port: 8888
 spring:
   datasource:
-  driver-class-name: com.mysql.jdbc.Driver
-  url: jdbc:mysql://121.5.240.214:3306/demo?useUnicode=true&characterEncoding=utf-8&useSSL=false&autoReconnect=true&failOverReadOnly=false&allowMultiQueries=true&serverTimezone=Asia/Shanghai
-  username: root
-  password: 621310ASdf_
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://121.5.240.214:3306/process?useUnicode=true&characterEncoding=utf-8&useSSL=false&autoReconnect=true&failOverReadOnly=false&allowMultiQueries=true&serverTimezone=Asia/Shanghai
+    username: root
+    password: 621310ASdf_
   jackson:
       #指定日期格式，比如yyyy-MM-dd HH:mm:ss
       date-format: yyyy-MM-dd HH:mm:ss
       #指定日期格式化时区
       time-zone: GMT+8
-#  redis:
-#    database: 0
-#    host: localhost
-#    port: 6379
-#    password:
-#    jedis:
-#      pool:
-#        max-active: 8
-#        max-wait: -1
-#        max-idle: 8
-#        min-idle: 0
-#    timeout: 0
+  redis:
+    database: 2
+    host: 121.5.240.214
+    port: 6379
+    jedis:
+      pool:
+        max-active: 2000
+        max-wait: -1
+        max-idle: 500
+        min-idle: 100
+    timeout: 5000
 logging:
   config: logback.xml
 #jwt
@@ -34,9 +33,13 @@ jwt:
   base64-secret: MDk4ZjZiY2Q0NjIxZDM3M2NhZGU0ZTgzMjYyfwejknfwjenfkjwefnkwenfwkenfweknfenfiweiwieN2I0ZjY=
   # 令牌过期时间 此处单位/毫秒
   token-validity-in-seconds: 86400000
+mybatis:
+  mapper-locations: classpath:/mapper/*.xml
+  type-aliases-package: com.liuyl.service_02.entity
 wechat:
   AppId: wx64647e49452430fd
   AppSecret: eae9619ed21ec49780c79f528492db48
+
 
 
 

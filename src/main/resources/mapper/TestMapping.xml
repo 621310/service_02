@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd" >
+<mapper namespace="com.liuyl.service_02.mapper.TestMapper">
+
+
+    <select id="testMybatis" resultType="java.util.Map">
+        select * from ACT_RU_TASK where ID_ = '15005'
+    </select>
+
+
+</mapper>

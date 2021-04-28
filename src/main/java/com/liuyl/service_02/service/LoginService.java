@@ -1,7 +1,7 @@
 package com.liuyl.service_02.service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.liuyl.service_02.WxInfo;
+import com.liuyl.service_02.entity.WxInfo;
 import com.liuyl.service_02.config.JwtTokenUtils;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -15,8 +15,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
-import java.io.InputStream;
-import java.net.http.HttpClient;
 import java.util.HashMap;
 import java.util.Map;
 

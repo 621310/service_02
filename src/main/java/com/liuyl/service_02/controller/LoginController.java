@@ -12,6 +12,9 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * @author liuyl01
+ */
 @RestController
 @RequestMapping("/api/auth")
 public class LoginController {

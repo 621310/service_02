@@ -1,5 +1,8 @@
-package com.liuyl.service_02;
+package com.liuyl.service_02.entity;
 
+/**
+ * @author liuyl01
+ */
 public class WxInfo {
 
     private String session_key;
