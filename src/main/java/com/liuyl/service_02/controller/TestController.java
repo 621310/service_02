@@ -37,9 +37,9 @@ public class TestController {
     //测试redis
     @GetMapping(value = "/getRedis")
     public Map<String,Object> testredis(){
-        String aa = (String)redisTemplate.opsForValue().get("zszxz");
+        String aa = (String)redisTemplate.opsForValue().get("access_token");
         Map<String,Object> result = new HashMap<>();
-        result.put("aa",aa);
+        result.put("access_token",aa);
         return result;
     }
 
