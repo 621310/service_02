@@ -35,6 +35,8 @@ public class LoginController {
         Map map = new HashMap();
         map.put("user",username);
         map.put("password",password);
+        map.put("sessionKey","4545");
+        map.put("openid","23232");
         return jwtTokenUtils.createToken(map);
     }
 

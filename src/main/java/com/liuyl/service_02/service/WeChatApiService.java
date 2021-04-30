@@ -1,7 +1,6 @@
 package com.liuyl.service_02.service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.liuyl.service_02.entity.WxInfo;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
@@ -14,11 +13,15 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
-import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.concurrent.atomic.AtomicReference;
 
 /**
  * @author liuyl01
@@ -57,4 +60,21 @@ public class WeChatApiService {
             e.printStackTrace();
         }
     }
+
+    /**
+     * 获取当前登录用户的openId
+     * @return
+     */
+    public static String getCurrentUserOpenid(){
+        SecurityContext securityContext = SecurityContextHolder.getContext();
+        List<GrantedAuthority> list = (List<GrantedAuthority>) securityContext.getAuthentication().getAuthorities();
+        String openid = "";
+        for (GrantedAuthority item : list) {
+            if(item.getAuthority().contains("openid")){
+                openid = item.getAuthority().substring(8, item.getAuthority().length());
+            }
+        }
+        return openid;
+    }
+
 }

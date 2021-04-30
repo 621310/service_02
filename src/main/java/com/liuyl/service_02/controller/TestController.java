@@ -2,13 +2,18 @@ package com.liuyl.service_02.controller;
 
 
 import com.liuyl.service_02.service.TestService;
+import com.liuyl.service_02.service.WeChatApiService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -37,6 +42,7 @@ public class TestController {
     //测试redis
     @GetMapping(value = "/getRedis")
     public Map<String,Object> testredis(){
+        System.out.println(WeChatApiService.getCurrentUserOpenid());
         String aa = (String)redisTemplate.opsForValue().get("access_token");
         Map<String,Object> result = new HashMap<>();
         result.put("access_token",aa);
